@@ -5,12 +5,30 @@ export async function fetchData() {
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
     }
-    const result = await response.json();
-    const data=result.data.map((obj)=>transObj(obj))
-    return data
+    return await response.json();
+    
     
   } catch (error) {
     console.error(error.message);
   }
 }
+
+// filter by type
+export async function filterTypeApi(type){
+    const url = ``;
+     try {
+     const response= await fetch(url)
+     if(!response.ok){
+      throw new Error(`Response Error: ${response.status}`)
+     }
+     return await response.json()
+    
+    } catch (error) {
+    console.error(error.message);
+  }
+}
+
+
+
+
 
