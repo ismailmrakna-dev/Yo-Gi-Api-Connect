@@ -4,6 +4,16 @@
 // Les données viennent de data.js (la constante `creatures`).
 // Écrivez votre code ici, fonctionnalité par fonctionnalité.
 // Une carte GitHub Projects et au moins un commit par fonctionnalité.
+const typesCard={
+  DARK:"./images/DARK.svg",
+  LIGHT:"./images/LIGHT.svg",
+  FIRE:"./images/FIRE.svg",
+  DIVINE:"./images/DIVINE.svg",
+  WATER:"./images/WATER.svg",
+  EARTH:"./images/EARTH.svg",
+  WIND:"./images/WIND.svg"
+  }
+  let equipeMembers=[]
 
 const formatNumero = (id) => "#" + String(id).padStart(3, "0");
 export const creerCards = (creatures) => {
@@ -300,7 +310,6 @@ function creerOneCard() {
         effect: effMonster.value.trim() || null
       };
       creatures.push(newMonster);
-      saveCreatures()
 
 
       document.querySelector("#cardsMonster").innerHTML = "";
@@ -407,7 +416,7 @@ function addToEquipe(monst) {
   }
 
   equipeMembers.push(monst)
-  saveTeam()
+ 
   message.textContent = `${monst.name} a été ajouté à votre equipe`
   message.style.color = "#4ade80"
   teamdisplay()
