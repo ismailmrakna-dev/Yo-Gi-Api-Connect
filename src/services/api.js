@@ -9,7 +9,7 @@ export async function request(method, route, body=null){
     if(response.ok){
         throw new Error(`response status: ${response.status}` )
     }
-    return response.json()
+    return await response.json()
 }
 
 export async function fetchData() {
@@ -52,7 +52,17 @@ export async function searchNameApi(name){
     console.error(error.message);
   }
 }
-
+export async function searchFilterApi(name,type){
+     try {
+     const response= await fetch(`${url}?type=${type}&q=${name}`)
+     if(!response.ok){
+      throw new Error(`Response Error: ${response.status}`)
+     }
+     return await response.json()
+     } catch (error) {
+    console.error(error.message);
+  }
+}
 
 
 
