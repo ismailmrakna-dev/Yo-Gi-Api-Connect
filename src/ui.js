@@ -4,9 +4,9 @@
 // Les données viennent de data.js (la constante `creatures`).
 // Écrivez votre code ici, fonctionnalité par fonctionnalité.
 // Une carte GitHub Projects et au moins un commit par fonctionnalité.
-loadData()
-let equipeMembers = []
-const creerCards = (creatures) => {
+
+const formatNumero = (id) => "#" + String(id).padStart(3, "0");
+export const creerCards = (creatures) => {
   const containerCard = document.querySelector("#cardsMonster")
   const monsters = creatures.slice()
   monsters.forEach((monst) => {
@@ -20,7 +20,7 @@ const creerCards = (creatures) => {
     card.innerHTML = `
           <div class="relative flex h-2/3 items-center text-white justify-center rounded-xl bg-[#191970]">
             <img src="${monst.image}" alt="${monst.name}" class="h-full w-full object-cover rounded-xl">
-            <span class="absolute left-3 top-2 font-mono text-sm text-white">${monst.id}</span>
+            <span class="absolute left-3 top-2 font-mono text-sm text-white">${formatNumero(monst.id)}</span>
           </div>
           <div class="flex flex-col items-center justify-between gap-2">
             <h3 class="font-display text-xl text-white font-semibold">${monst.name}</h3>
@@ -56,8 +56,7 @@ const creerCards = (creatures) => {
 // Supprimez les cartes écrites à la main dans index.html et
 // construisez la grille à partir du tableau `creatures`.
 // -------------------------------------------------------------
-creerCards(creatures)
-
+// 
 
 // -------------------------------------------------------------
 // 2. DÉTAIL
@@ -156,7 +155,7 @@ function searchNom() {
 
   })
 }
-searchNom()
+// 
 
 
 // -------------------------------------------------------------
@@ -196,7 +195,7 @@ function filtreType() {
     })
   })
 }
-filtreType()
+
 
 
 // -------------------------------------------------------------
@@ -318,7 +317,7 @@ function creerOneCard() {
 
 }
 
-creerOneCard();
+
 
 
 function idIsValid(id) {
@@ -539,7 +538,7 @@ function showtri() {
     buttonsUpdate();
   });
 }
-showtri()
+
 
 // comparaison 2 cards
 function fillCompareSelects() {
@@ -560,7 +559,7 @@ function fillCompareSelects() {
     select2.appendChild(option2);
   });
 }
-fillCompareSelects()
+
 function compareCards() {
   const id1 = document.querySelector("#card1").value;
   const id2 = document.querySelector("#card2").value;
@@ -615,28 +614,10 @@ function compareCards() {
 }
 
 
-document.querySelector("#btn-compare")?.addEventListener("click", compareCards);
+// document.querySelector("#btn-compare")?.addEventListener("click", compareCards);
 
 
-// localStorage
-
-// Save team to LocalStorage
-function saveTeam() {
-  localStorage.setItem("YoGiOh-team", JSON.stringify(equipeMembers));
-}
-function saveCreatures() {
-  localStorage.setItem("YoGiOh-creatures", JSON.stringify(creatures));
-}
 
 
-function loadData() {
-  const savedTeam = localStorage.getItem("yugioh-team");
-  if (savedTeam) {
-    equipeMembers = JSON.parse(savedTeam);
-  }
-  const savedCreatures = localStorage.getItem("yugioh-creatures");
-  if (savedCreatures) {
-    creatures = JSON.parse(savedCreatures);
-  }
-}
+
 

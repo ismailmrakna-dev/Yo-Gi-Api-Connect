@@ -1,5 +1,5 @@
 export async function fetchData() {
-  const url = ``;
+  const url = `http://localhost:3000/creatures`;
   try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -15,7 +15,7 @@ export async function fetchData() {
 
 // filter by type
 export async function filterTypeApi(type){
-    const url = ``;
+    const url = `http://localhost:3000/creatures`;
      try {
      const response= await fetch(url)
      if(!response.ok){
@@ -30,7 +30,7 @@ export async function filterTypeApi(type){
 
 
 export async function searchNameApi(name){
-     const url=``;
+     const url=`http://localhost:3000/creatures`;
      try {
      const response= await fetch(url)
      if(!response.ok){
