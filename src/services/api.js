@@ -1,5 +1,18 @@
+const url="http://localhost:3000/creatures"
+export async function request(method, route, body=null){
+    
+    const response= await fetch(`${url}${route}`,{
+        method:method,
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(body) ?? null
+    })
+    if(response.ok){
+        throw new Error(`response status: ${response.status}` )
+    }
+    return response.json()
+}
+
 export async function fetchData() {
-  const url = `http://localhost:3000/creatures`;
   try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -15,9 +28,8 @@ export async function fetchData() {
 
 // filter by type
 export async function filterTypeApi(type){
-    const url = `http://localhost:3000/creatures`;
      try {
-     const response= await fetch(url)
+     const response= await fetch(`${url}?type=${type}`)
      if(!response.ok){
       throw new Error(`Response Error: ${response.status}`)
      }
@@ -30,9 +42,8 @@ export async function filterTypeApi(type){
 
 
 export async function searchNameApi(name){
-     const url=`http://localhost:3000/creatures`;
      try {
-     const response= await fetch(url)
+     const response= await fetch(`${url}?q=${name}`)
      if(!response.ok){
       throw new Error(`Response Error: ${response.status}`)
      }

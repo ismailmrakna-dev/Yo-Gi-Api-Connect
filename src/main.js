@@ -22,8 +22,8 @@ async function initHomePages() {
    
 
     // filter search in console
-    filterTypeApi("WIND")
-    searchNameApi("dark")
+    console.log(await filterTypeApi("LIGHT"))
+    console.log(await searchNameApi("magician"))
 
     // // search event
     // let searchName = ""
