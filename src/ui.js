@@ -621,6 +621,11 @@ function compareCards() {
 
   resultDiv.classList.remove("hidden");
 }
+export function createMessage(message){
+  const containerCard = document.querySelector("#cardsMonster")
+  containerCard.innerHTML=""
+  containerCard.innerHTML=`<p class="h-30 w-full text-xl mx-auto my-auto text-gray-600">${message}</p>`
+}
 
 
 // document.querySelector("#btn-compare")?.addEventListener("click", compareCards);
