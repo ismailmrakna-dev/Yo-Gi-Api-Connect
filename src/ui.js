@@ -18,6 +18,7 @@ const typesCard={
 const formatNumero = (id) => "#" + String(id).padStart(3, "0");
 export const creerCards = (creatures) => {
   const containerCard = document.querySelector("#cardsMonster")
+  containerCard.innerHTML=""
   const monsters = creatures.slice()
   monsters.forEach((monst) => {
     let stars = ""
@@ -621,10 +622,14 @@ function compareCards() {
 
   resultDiv.classList.remove("hidden");
 }
+
+
+// errors message 
 export function createMessage(message){
   const containerCard = document.querySelector("#cardsMonster")
   containerCard.innerHTML=""
-  containerCard.innerHTML=`<p class="h-30 w-full text-xl mx-auto my-auto text-gray-600">${message}</p>`
+  containerCard.innerHTML=`<p class="w-full p-12 text-4xl items-center mx-60  font-bold text-gray-600">${message}</p>
+  `
 }
 
 

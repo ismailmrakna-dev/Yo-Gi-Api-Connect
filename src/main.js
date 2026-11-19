@@ -1,5 +1,5 @@
 
-import { creerCards} from "./ui.js"
+import { creerCards, createMessage} from "./ui.js"
 import {  fetchData, searchNameApi, filterTypeApi, searchFilterApi } from "./services/api.js"
 
 
@@ -14,12 +14,13 @@ async function initHomePages() {
     const search = document.querySelector("#search")
     console.log("Home Page");
     ///  paginagtion creation of cards Monsters
-    let cardsData=[]
-    cardsData = await fetchData()
-    creerCards(cardsData)
+      createMessage(" Waiting for Data ...")
+    // let cardsData=[]
+    // cardsData = await fetchData()
+    // creerCards(cardsData)
 }
     
-   
+ 
 
     // filter search in console
     console.log(await filterTypeApi("LIGHT"))
