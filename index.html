@@ -57,8 +57,21 @@
             class="h-6 w-6" src="./images/LIGHT.svg" alt="icon type LIGHT">LIGHT</button>
         <button type="button"  class="btn-filter chip flex items-center gap-2 font-bold hover:bg-[#F5B942]"><img
             class="h-6 w-6" src="./images/DIVINE.svg" alt="icon type DIVINE">DIVINE</button>
-        <button type="button" id="btn-sort"
-          class="chip flex items-center gap-2 font-bold hover:bg-[#F5B942]">Sort</button>
+        <label>Sort By: </label>    
+        <select id="btn-sort"
+          class="chip flex items-center gap-2 font-bold hover:bg-[#F5B942]">
+        <option value="name">name</option>
+        <option value="stats.atk">attaque</option>
+        <option value="stats.def">defence</option>
+        <option value="stats.atk+stats.def">(atk+def)</option>
+      </select>
+      <label>Order : </label>    
+        <select id="btn-order"
+          class="chip flex items-center gap-2 font-bold hover:bg-[#F5B942]">
+        <option value="desc">desc(⬇)</option>
+        <option value="asc">asc(⬆)</option>
+      </select>
+        
 
       </div>
     

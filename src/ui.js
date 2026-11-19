@@ -312,15 +312,14 @@ export function creerOneCard() {
         description: descMonster.value.trim(),
         effect: effMonster.value.trim() || null
       };
-      request('POST','',newMonster)
-      createMessage()
+      await request('POST','',newMonster)
+      createMessage("... Waiting for Data ...")
       creerCards(await fetchData())
       form.reset();
       clearError();
       alert("Créature ajoutée avec succès !");
       console.log("Nouvelle créature :", newMonster);
     }
-
   });
 
 }
