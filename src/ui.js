@@ -628,7 +628,7 @@ function compareCards() {
 export function createMessage(message){
   const containerCard = document.querySelector("#cardsMonster")
   containerCard.innerHTML=""
-  containerCard.innerHTML=`<p class="w-full p-12 text-4xl items-center mx-60  font-bold text-gray-600">${message}</p>
+  containerCard.innerHTML=`<p class="p-12 text-4xl text-center mx-auto  font-bold text-gray-600">${message}</p>
   `
 }
 

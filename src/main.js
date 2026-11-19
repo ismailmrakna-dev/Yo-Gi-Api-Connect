@@ -1,6 +1,6 @@
 
 import { creerCards, createMessage} from "./ui.js"
-import {  fetchData, searchNameApi, filterTypeApi, searchFilterApi } from "./services/api.js"
+import {  fetchData, searchNameApi, filterTypeApi, searchFilterApi, searchFilterSortApi } from "./services/api.js"
 
 
 
@@ -14,18 +14,23 @@ async function initHomePages() {
     const search = document.querySelector("#search")
     console.log("Home Page");
     ///  paginagtion creation of cards Monsters
-      createMessage(" Waiting for Data ...")
-    // let cardsData=[]
-    // cardsData = await fetchData()
-    // creerCards(cardsData)
+   try {
+    createMessage(" Waiting for Data ...")
+    let cardsData=[]
+    cardsData = await fetchData()
+    creerCards(cardsData)
+   } catch {
+    createMessage("ERR_CONNECTION_REFUSED");
+   }
 }
     
  
 
     // filter search in console
-    console.log(await filterTypeApi("LIGHT"))
-    console.log(await searchNameApi("magician"))
-    console.log(await searchFilterApi("magician","DARK"))
+    console.log( await filterTypeApi("LIGHT"))
+    console.log( await searchNameApi("magician"))
+    console.log( await searchFilterApi("magician","DARK"))
+    console.log( await searchFilterSortApi("magician","DARK"))
 
     // // search event
     // let searchName = ""
