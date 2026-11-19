@@ -1,6 +1,7 @@
 
 import { creerCards, createMessage} from "./ui.js"
-import {  fetchData, searchNameApi, filterTypeApi, searchFilterApi, searchFilterSortApi } from "./services/api.js"
+import {  fetchData,  } from "./services/api.js"
+import {  searchFilterSortApi  } from "./rules.js"
 
 
 
@@ -32,14 +33,9 @@ async function initHomePages() {
     createMessage("ERR_CONNECTION_REFUSED");
    }
 }
-    // filter search in console
-    console.log( await filterTypeApi("LIGHT"))
-    console.log( await searchNameApi("magician"))
-    console.log( await searchFilterApi("magician","DARK"))
-    console.log( await searchFilterSortApi("magician","DARK"))
+  
 
-    // search event
-    
+    // search filter sort events
     search.addEventListener("input", async (e) => {
         const name = e.target.value.toLowerCase().trim()
         state.searchTar = name
