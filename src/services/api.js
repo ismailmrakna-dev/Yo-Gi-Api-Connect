@@ -50,12 +50,13 @@ export async function searchFilterApi(name,type){
      return await response.json()
 }
 
-export async function searchFilterSortApi(name='',type='', option="name", order="desc"){
+export async function searchFilterSortApi(obj){
     
-     const response= await fetch(`${url}?type=${type}&q=${name}&_sort=${option}&_order=${order}`)
+     const response= await fetch(`${url}?type=${obj.type}&q=${obj.searchTar}&_sort=${obj.sortBys}&_order=${obj.order}`)
      if(!response.ok){
       throw new Error(`Response Error: ${response.status}`)
      }
+
      return await response.json()
 }
 
