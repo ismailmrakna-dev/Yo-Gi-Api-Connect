@@ -14,8 +14,8 @@ let state={
 }
 const search = document.querySelector("#search")
 const filter = document.querySelector("#filters")
-const sort = document.querySelector("#sortBy")
-const order = document.querySelector("#order")
+const sort = document.querySelector("#btn-sort")
+const order = document.querySelector("#btn-order")
 const currentPage = window.location.pathname;
 if (currentPage.includes("index.html")) {
     initHomePages()
