@@ -5,12 +5,11 @@ import {  searchFilterSortApi  } from "./rules.js"
 
 
 
-let state={
+const state={
     searchTar:"",
     type:"DARK",
     sortBy:"name",
     order:"desc"
-
 }
 const search = document.querySelector("#search")
 const filter = document.querySelector("#filters")
@@ -52,17 +51,13 @@ async function initHomePages() {
         
         creerCards(await searchFilterSortApi(state))
     })
-    sort.addEventListener("change", async (e) => {
-        const sortCLick = e.value
-        if(!sortCLick) return
+    sort.addEventListener("click", async (e) => {
         createMessage("... Waiting for Data ...")
-        state.sortBy = sortCLick.value
+        state.sortBy = sort.value
       
         creerCards(await searchFilterSortApi(state))
     })
-    order.addEventListener("change", async (e) => {
-        const orderCLick = e.value
-        if(!orderCLick) return
+    order.addEventListener("click", async (e) => {
         createMessage("... Waiting for Data ...")
         state.sortBy = order.value
         createMessage("... Waiting for Data ...")

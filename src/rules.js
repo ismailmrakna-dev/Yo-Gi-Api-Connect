@@ -1,4 +1,7 @@
+const url="http://localhost:3000/creatures"
+
 // filter by type
+
 export async function filterTypeApi(type){
      const response= await fetch(`${url}?type=${type}`)
      if(!response.ok){
@@ -29,7 +32,7 @@ export async function searchFilterApi(name,type){
 
 export async function searchFilterSortApi(obj){
     
-     const response= await fetch(`${url}?type=${obj.type}&q=${obj.searchTar}&_sort=${obj.sortBys}&_order=${obj.order}`)
+     const response= await fetch(`${url}?type=${obj.type}&q=${obj.searchTar}&_sort=${obj.sortBy}&_order=${obj.order}`)
      if(!response.ok){
       throw new Error(`Response Error: ${response.status}`)
      }
