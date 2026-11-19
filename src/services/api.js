@@ -1,11 +1,13 @@
 const url="http://localhost:3000/creatures"
 export async function request(method, route, body=null){
-    
-    const response= await fetch(`${url}${route}`,{
-        method:method,
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(body) ?? null
-    })
+    const options={
+        method:method
+    }
+    if (body!==null){
+        options.headers= {"Content-Type": "application/json"}
+        options.body=JSON.stringify(body)
+    }
+    const response= await fetch(`${url}${route}`,options)
     if(!response.ok){
         throw new Error(`response status: ${response.status}` )
     }
