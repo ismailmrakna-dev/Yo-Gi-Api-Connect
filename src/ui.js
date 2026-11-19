@@ -4,6 +4,8 @@
 // Les données viennent de data.js (la constante `creatures`).
 // Écrivez votre code ici, fonctionnalité par fonctionnalité.
 // Une carte GitHub Projects et au moins un commit par fonctionnalité.
+import { fetchData, request  } from "./services/api.js"
+
 const typesCard={
   DARK:"./images/DARK.svg",
   LIGHT:"./images/LIGHT.svg",
@@ -215,10 +217,10 @@ function filtreType() {
 // (voir le tableau du brief). Affichez le message d'erreur sous le
 // champ, et n'ajoutez jamais une créature invalide.
 // -------------------------------------------------------------
-function creerOneCard() {
+export function creerOneCard() {
   const form = document.querySelector("#creature-form");
 
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit",async (event) => {
     event.preventDefault();
     clearError();
 
@@ -310,15 +312,11 @@ function creerOneCard() {
         description: descMonster.value.trim(),
         effect: effMonster.value.trim() || null
       };
-      creatures.push(newMonster);
-
-
-      document.querySelector("#cardsMonster").innerHTML = "";
-      creerCards(creatures);
-
+      request('POST','',newMonster)
+      createMessage()
+      creerCards(await fetchData())
       form.reset();
       clearError();
-
       alert("Créature ajoutée avec succès !");
       console.log("Nouvelle créature :", newMonster);
     }
@@ -458,7 +456,7 @@ function teamdisplay() {
 }
 
 
-function removeFromTeam(idcard) {
+export function removeFromTeam(idcard) {
   const message = document.querySelector("#teamMessage");
 
   let name = "";
@@ -520,38 +518,38 @@ function buttonsUpdate() {
 // BONUS : LocalStorage, Fetch API, tri, comparaison
 // -------------------------------------------------------------
 
-//show tri
-function showtri() {
-  const containerCard = document.querySelector("#cardsMonster");
-  const copy = creatures.slice();
-  copy.sort((a, b) => (b.stats.atk + b.stats.def) - (a.stats.atk + a.stats.def));
-  const filter = document.querySelector("#filters");
-  const clickbtn = document.querySelector("#btn-sort");
+// //show tri
+// function showtri() {
+//   const containerCard = document.querySelector("#cardsMonster");
+//   const copy = creatures.slice();
+//   copy.sort((a, b) => (b.stats.atk + b.stats.def) - (a.stats.atk + a.stats.def));
+//   const filter = document.querySelector("#filters");
+//   const clickbtn = document.querySelector("#btn-sort");
 
-  if (!clickbtn) {
-    containerCard.innerHTML = "";
-    filtreType();
-    creerCards(creatures);
-    return;
-  }
+//   if (!clickbtn) {
+//     containerCard.innerHTML = "";
+//     filtreType();
+//     creerCards(creatures);
+//     return;
+//   }
 
-  clickbtn.addEventListener("click", () => {
-    containerCard.innerHTML = "";
-    filter.querySelectorAll(".btn-filter").forEach(btn => {
-      btn.style.background = "";
-      btn.classList.remove("active");
-    });
-    clickbtn.style.background = "#F5B942";
-    clickbtn.classList.add("active");
-    creerCards(copy);
-    filtreType();
-    buttonsUpdate();
-  });
-}
+//   clickbtn.addEventListener("click", () => {
+//     containerCard.innerHTML = "";
+//     filter.querySelectorAll(".btn-filter").forEach(btn => {
+//       btn.style.background = "";
+//       btn.classList.remove("active");
+//     });
+//     clickbtn.style.background = "#F5B942";
+//     clickbtn.classList.add("active");
+//     creerCards(copy);
+//     filtreType();
+//     buttonsUpdate();
+//   });
+// }
 
 
 // comparaison 2 cards
-function fillCompareSelects() {
+export function fillCompareSelects(creatures) {
   const select1 = document.querySelector("#card1");
   const select2 = document.querySelector("#card2");
 
@@ -570,7 +568,7 @@ function fillCompareSelects() {
   });
 }
 
-function compareCards() {
+export function compareCards(creatures) {
   const id1 = document.querySelector("#card1").value;
   const id2 = document.querySelector("#card2").value;
   const resultDiv = document.querySelector("#compare-result");

@@ -1,5 +1,5 @@
 
-import { creerCards, createMessage} from "./ui.js"
+import { creerCards, createMessage, creerOneCard} from "./ui.js"
 import {  fetchData,  } from "./services/api.js"
 import {  searchFilterSortApi  } from "./rules.js"
 
@@ -25,13 +25,14 @@ async function initHomePages() {
     console.log("Home Page");
     ///paginagtion creation of cards Monsters
    try {
-    createMessage(" Waiting for Data ...")
+    createMessage("... Waiting for Data ...")
     let cardsData=[]
     cardsData = await fetchData()
     creerCards(cardsData)
    } catch {
     createMessage("ERR_CONNECTION_REFUSED");
    }
+   creerOneCard()
 }
   
 
@@ -39,30 +40,30 @@ async function initHomePages() {
     search.addEventListener("input", async (e) => {
         const name = e.target.value.toLowerCase().trim()
         state.searchTar = name
-        createMessage(" Waiting for Data ...")
+        createMessage("... Waiting for Data ...")
         creerCards(await searchFilterSortApi(state))
     })
     filter.addEventListener("click", async (e) => {
         const btnCLick = e.target.closest(".btn-filter")
         if(!btnCLick) return
         if(btnCLick.textContent==="ALL") return
-        createMessage(" Waiting for Data ...")
+        createMessage("... Waiting for Data ...")
         state.type = btnCLick.textContent
-        createMessage(" Waiting for Data ...")
+        
         creerCards(await searchFilterSortApi(state))
     })
     sort.addEventListener("change", async (e) => {
         const sortCLick = e.value
         if(!sortCLick) return
-        createMessage(" Waiting for Data ...")
+        createMessage("... Waiting for Data ...")
         state.sortBy = sortCLick.value
-        createMessage("  Waiting for Data ...")
+      
         creerCards(await searchFilterSortApi(state))
     })
     order.addEventListener("change", async (e) => {
         const orderCLick = e.value
         if(!orderCLick) return
-        createMessage(" Waiting for Data ...")
+        createMessage("... Waiting for Data ...")
         state.sortBy = order.value
         createMessage("... Waiting for Data ...")
         creerCards(await searchFilterSortApi(state))
