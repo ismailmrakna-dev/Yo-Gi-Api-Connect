@@ -619,8 +619,6 @@ export function compareCards(creatures) {
 
   resultDiv.classList.remove("hidden");
 }
-
-
 // errors message 
 export function createMessage(message){
   const containerCard = document.querySelector("#cardsMonster")
@@ -629,6 +627,89 @@ export function createMessage(message){
   `
 }
 
+export function popUpMod(monst){
+     const modifyCon=document.querySelector('#modify-card')
+     modifyCon.innerHTML=''
+     modifyCon.innerHTML=`
+      <div>
+        <h2 class="font-display text-3xl font-extrabold text-[#F5B942]">Modifier créature</h2>
+        <p class="text-muted">Chaque champ est vérifié avant la modification de la créature.</p>
+      </div>
+      <form id="creature-form" novalidate class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
+        <label class="flex flex-col gap-1 text-sm font-bold text-[#F5B942]">Numéro
+          <input name="id" type="text" placeholder="#010" class="field text-gray-400 font-normal value="${(monst.id)}">
+          <span class="error-message text-sm font-normal"></span>
+        </label>
+        <label class="flex flex-col gap-1 text-sm font-bold text-[#F5B942]">Nom
+          <input name="name" type="text" placeholder="Nom de la créature" class="field text-gray-400 value="${monst.name}" font-normal">
+          <span class="error-message text-sm font-normal"></span>
+        </label>
+        <label class="flex flex-col gap-1 text-sm font-bold text-[#F5B942]">Type
+          <select name="type" class="field w-full text-gray-400 font-normal value="${monst.type}">
+            <option value="">Choisir un type</option>
+            <option>DARK</option>
+            <option>WIND</option>
+            <option>LIGHT</option>
+            <option>EARTH</option>
+            <option>FIRE</option>
+            <option>WATER</option>
+            <option>DIVINE</option>
+          </select>
+        </label>
+        <label class="flex flex-col gap-1 text-sm font-bold text-[#F5B942]">Monster Type
+          <select name="monstertype" class="field w-full text-gray-400 font-normal value="${monst.monsterType}"">
+            <option value="">Choisir un type</option>
+            <option>Fusion</option>
+            <option>Ritual</option>
+            <option>Normal</option>
+            <option>Effect</option>
+          </select>
+          <span class="error-message text-sm font-normal"></span>
+        </label>
+
+        <label class="flex flex-col gap-1 text-sm font-bold text-[#F5B942]">Race
+          <input name="race" type="text" placeholder="Nom de la créature"
+            class="field text-gray-400 font-normal  value="${monst.race}"">
+          <span class="error-message text-sm font-normal"></span>
+        </label>
+
+        <label class="flex flex-col gap-1 text-sm font-bold text-[#F5B942]">Niveau
+          <input name="lvlMonster" type="text" placeholder="Niveau 1 to 12" class="field text-gray-400 font-normal value="${monst.stats.level}"">
+          <span class="error-message text-sm font-normal"></span>
+        </label>
+
+        <label class="flex flex-col gap-1 text-sm font-bold text-[#F5B942]">Attaque
+          <input name="atkMonster" type="text" placeholder="0 à 5000" class="field text-gray-400 font-normal value="${monst.stats.atk}"">
+          <span class="error-message text-sm font-normal"></span>
+        </label>
+
+        <label class="flex flex-col gap-1 text-sm font-bold text-[#F5B942]">Defence
+          <input name="defMonster" type="text" placeholder="0 à 5000" class="field text-gray-400 font-normal value="${monst.stats.def}" required">
+          <span class="error-message text-sm font-normal"></span>
+        </label>
+
+        <label class="flex flex-col gap-1 text-sm font-bold text-[#F5B942]">Lien de l'image
+          <input name="imgMonster" type="text" placeholder="https://…/image.png"
+            class="field text-gray-400 font-normal value="${monst.image}"">
+          <span class="error-message text-sm font-normal"></span>
+        </label>
+        <label class="flex flex-col gap-1 text-sm font-bold text-[#F5B942]">Description
+          <textarea name="descMonster" rows="3" placeholder="10 à 200 caractères" value="${monst.description}"
+            class="rounded-xl border-2 bg-white border-line text-gray-400 p-3 font-normal outline-none"></textarea>
+          <span class="error-message text-sm font-normal"></span>
+        </label>
+        <label class="flex flex-col gap-1 text-sm font-bold text-[#F5B942]">Effect
+          <textarea name="effMonster" rows="2" placeholder="10 à 200 caractères" value="${monst.effect}"
+            class="rounded-xl border-2 bg-white border-line text-gray-400 p-3 font-normal outline-none"></textarea>
+          <span class="error-message text-sm font-normal"></span>
+        </label>
+        <div class="flex flex-wrap justify-end gap-3 md:col-span-2 lg:col-span-4">
+          <button type="reset" class="btn-outline bg-[#F5B942] text-white px-6 hover:bg-[#E5A932]">Effacer</button>
+          <button type="submit" class="btn-primary bg-[#F5B942] text-white hover:bg-[#E5A932]">Enregistrer</button>
+        </div>
+      </form>
+    `
+}
 
 // document.querySelector("#btn-compare")?.addEventListener("click", compareCards);
 

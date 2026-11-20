@@ -34,7 +34,6 @@ async function initHomePages() {
    creerOneCard()
 }
   
-
     // search filter sort events
     search.addEventListener("input", async (e) => {
         const name = e.target.value.toLowerCase().trim()
@@ -64,6 +63,8 @@ async function initHomePages() {
         creerCards(await searchFilterSortApi(state))
     })
     
+
+
     // let offset = 0
     // let page = 1
     // const btnSearch = document.querySelector("#btn-search")
