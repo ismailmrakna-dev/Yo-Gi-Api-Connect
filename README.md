@@ -23,32 +23,129 @@ npm run build
 
 Puis committez `dist/output.css` : GitHub Pages ne lance pas Tailwind pour vous.
 
-## Contenu du dépôt
 
-| Fichier | Rôle |
-| --- | --- |
-| `index.html` | La page Dex, statique, avec 6 cartes écrites à la main |
-| `tailwind.config.js` | Le thème neutre à remplacer par celui de votre univers |
-| `src/input.css` | Les directives Tailwind et quelques classes de composants |
-| `dist/output.css` | Le CSS généré par Tailwind (ne pas modifier à la main) |
-| `data.js` | Le tableau `creatures`, à remplir avec au moins 12 créatures |
-| `script.js` | Votre JavaScript, avec la liste des fonctionnalités à coder |
-| `design/` | La maquette de la version finale |
-
-## À compléter par vous
 
 - **Univers choisi :** [ Yu-Gi-Oh!]
 - **Lien GitHub Pages :** [[lien](https://ismailmrakna-dev.github.io/cards-Yo-Gi/)]
 - **Sources des images :** [https://yugioh.fandom.com/wiki/Exodia_the_Forbidden_One]
 - **Tests des expressions régulières :** [collez ici vos tests console : 2 valeurs valides et 2 invalides par expression]
-- **Bonus réalisés :** [sort - compare - localStorage]
-  Voici le **README complet en français** pour ton projet Yu-Gi-Oh! DEX :
 
----
 
-# Yu-Gi-Oh! DEX
+# Yu-Gi-Oh! DEX — API Connect
 
-**Yu-Gi-Oh! DEX** est une application web fan-made qui permet d’explorer, rechercher, filtrer, créer et gérer une équipe de monstres Yu-Gi-Oh!.
+A responsive Yu-Gi-Oh! encyclopedia connected to a REST API
+using JSON Server.
+
+## Features
+
+### Dex
+- Display Yu-Gi-Oh! creatures from the API.
+- Search creatures by name or other fields.
+- Filter creatures by attribute.
+- Sort by name or ID.
+- View detailed creature information.
+- Add new creatures.
+- Modify existing creatures.
+- Delete creatures.
+
+### Data management
+- JSON Server REST API.
+- GET, POST, PUT and DELETE.
+- LocalStorage for the last selected filter.
+- SessionStorage for form drafts.
+- Form validation.
+- Error and loading messages.
+
+## Technologies
+
+- HTML5
+- Tailwind CSS
+- JavaScript ES Modules
+- Fetch API
+- JSON Server 0.17.4
+- JSON
+
+## Project structure
+
+```text
+Yo-Gi-Api-Connect/
+├── css/
+├── images/
+├── src/
+│   ├── main.js
+│   ├── ui.js
+│   ├── rules.js
+│   ├── storage.js
+│   └── services/
+│       └── api.js
+├── db.json
+├── index.html
+├── package.json
+└── README.md
+```
+
+## Installation
+
+Requirements:
+- Node.js
+- npm
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start JSON Server:
+
+```bash
+npm run api
+```
+
+The API is available at:
+
+http://localhost:3000
+
+Start the frontend with VS Code Live Server.
+
+## API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | /creatures | Get all creatures |
+| GET | /creatures/1 | Get one creature |
+| POST | /creatures | Create a creature |
+| PUT | /creatures/1 | Update a creature |
+| DELETE | /creatures/1 | Delete a creature |
+
+### Search and filtering
+
+```text
+/creatures?type=DARK
+/creatures?q=mag
+/creatures?_sort=name&_order=asc
+/creatures?type=DARK&q=mag&_sort=name&_order=asc
+```
+
+## Architecture
+
+- api.js: API communication.
+- rules.js: Business rules and validation.
+- storage.js: Browser storage.
+- ui.js: DOM rendering.
+- main.js: Application controller.
+
+All HTTP requests are centralized in api.js.
+
+## Author
+
+Ismail Mrakna
+
+Educational project — Frontend Development.
+
+Fan-made project, not affiliated with Konami.
+
+
 
 ### Fonctionnalités
 
@@ -70,20 +167,7 @@ Puis committez `dist/output.css` : GitHub Pages ne lance pas Tailwind pour vous.
 - CSS3 + Tailwind CSS
 - JavaScript Vanilla
 - LocalStorage
-- Fetch API (bonus)
-
-### Structure du projet
-
-```
-cards-Yo-Gi/
-├── index.html
-├── input.css
-├── output.css
-├── script.js
-├── data.js
-├── images/
-└── README.md
-```
+- Fetch API 
 
 ### Comment lancer le projet
 
@@ -96,18 +180,7 @@ cards-Yo-Gi/
 Projet réalisé dans le cadre d’une formation front-end.  
 Fan project – non affilié à Konami.
 
----
 
-### Améliorations possibles (Backlog)
-
-- [ ] Sauvegarder l’équipe et les cartes créées avec LocalStorage
-- [ ] Charger des cartes réelles via l’API YGOPRODeck
-- [ ] Améliorer le responsive mobile
-- [ ] Ajouter des animations plus fluides
-- [ ] Mode sombre / clair
-- [ ] Système de favoris
-
----
 
 **Merci d’avoir testé Yu-Gi-Oh! DEX !**  
 Que le cœur du monstre soit avec toi.
