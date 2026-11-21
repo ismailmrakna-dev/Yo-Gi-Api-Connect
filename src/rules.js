@@ -1,5 +1,5 @@
 const url="http://localhost:3000/creatures"
-
+import { fetchData, request   } from "./services/api.js"
 // filter by type
 
 export async function filterTypeApi(type){
@@ -8,8 +8,6 @@ export async function filterTypeApi(type){
       throw new Error(`Response Error: ${response.status}`)
      }
      return await response.json()
-    
-   
 }
 
 
@@ -38,4 +36,8 @@ export async function searchFilterSortApi(obj){
      }
 
      return await response.json()
+}
+
+export async function removeMons(monstId){
+  await request('DELETE',`/${monstId}`)
 }
