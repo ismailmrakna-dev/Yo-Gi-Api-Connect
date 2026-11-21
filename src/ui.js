@@ -4,8 +4,8 @@
 // Les données viennent de data.js (la constante `creatures`).
 // Écrivez votre code ici, fonctionnalité par fonctionnalité.
 // Une carte GitHub Projects et au moins un commit par fonctionnalité.
-import { fetchData, request  } from "./services/api.js"
-
+import { fetchData, request   } from "./services/api.js"
+import { removeMons } from "./rules.js";
 const typesCard={
   DARK:"./images/DARK.svg",
   LIGHT:"./images/LIGHT.svg",
@@ -28,7 +28,7 @@ export const creerCards = (creatures) => {
       stars += "⭐"
     }
     const card = document.createElement("article")
-    card.className = `cardMonst h-150 flex flex-col gap-3 bg-[url('../images/bg-card.jpg')] bg-cover bg-center rounded-md p-3 pb-4 
+    card.className = `cardMonst  flex flex-col gap-3 bg-[url('../images/bg-card.jpg')] bg-cover bg-center rounded-md p-3 pb-4 
         hover:scale-105 hover:shadow-lg hover:shadow-[#F5B942]/50 transition-all duration-300"`
     card.innerHTML = `
           <div class="relative flex h-2/3 items-center text-white justify-center rounded-xl bg-[#191970]">
@@ -46,9 +46,30 @@ export const creerCards = (creatures) => {
           <p class="text-sm mx-auto text-white font-bold">ATK: ${monst.stats.atk} | DEF: ${monst.stats.def}</p>
           <p class="text-sm mx-auto font-bold text-white shadow-md">${stars}</p>
         `;
+
+     const div= document.createElement("div")
+     div.className="relative flex items-center gap-4 w-full"
+    const btnRem= document.createElement('button')  
+    btnRem.textContent = "✕"
+    btnRem.className = "btn-outline mr-0 bg-[#F5B942] text-white w-11 px-0 hover:bg-[#F5B942]/90"
+    btnRem.addEventListener("click", (e) => {
+      e.stopPropagation();
+      removeMons(monst.id);
+    });
+div.prepend(btnRem)    
+    const btnMod= document.createElement('button')  
+    btnMod.textContent = "✎"
+    btnMod.className = "btn-outline ml-0 bg-[#F5B942] text-white w-11 px-0 hover:bg-[#F5B942]/90"
+    btnMod.addEventListener("click", (e) => {
+      popUpMod(monst);
+      creerCards(creatures);
+    });
+div.prepend(btnMod)
+    card.prepend(div)
     card.style.cursor = "pointer";
     card.addEventListener("click", () => {
       afficheDetail(monst)
+      
     })
     const addbutton = document.createElement("button")
     addbutton.textContent = "Ajouter à l'équipe"
@@ -610,7 +631,7 @@ export function compareCards(creatures) {
 
     <div>Total (ATK+DEF)</div>
     <div class="${winner(card1.stats.atk + card1.stats.def, card2.stats.atk + card2.stats.def)}">
-      ${card1.atk + card1.def}
+      ${card1.stats.atk + card1.stats.def}
     </div>
     <div class="${winner(card2.stats.atk + card2.stats.def, card1.stats.atk + card1.stats.def)}">
       ${card2.stats.atk + card2.stats.def}
@@ -636,10 +657,6 @@ export function popUpMod(monst){
         <p class="text-muted">Chaque champ est vérifié avant la modification de la créature.</p>
       </div>
       <form id="creature-form" novalidate class="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
-        <label class="flex flex-col gap-1 text-sm font-bold text-[#F5B942]">Numéro
-          <input name="id" type="text" placeholder="#010" class="field text-gray-400 font-normal value="${(monst.id)}">
-          <span class="error-message text-sm font-normal"></span>
-        </label>
         <label class="flex flex-col gap-1 text-sm font-bold text-[#F5B942]">Nom
           <input name="name" type="text" placeholder="Nom de la créature" class="field text-gray-400 value="${monst.name}" font-normal">
           <span class="error-message text-sm font-normal"></span>
@@ -690,7 +707,7 @@ export function popUpMod(monst){
 
         <label class="flex flex-col gap-1 text-sm font-bold text-[#F5B942]">Lien de l'image
           <input name="imgMonster" type="text" placeholder="https://…/image.png"
-            class="field text-gray-400 font-normal value="${monst.image}"">
+            class="field text-gray-400 font-normal ${monst.image}">
           <span class="error-message text-sm font-normal"></span>
         </label>
         <label class="flex flex-col gap-1 text-sm font-bold text-[#F5B942]">Description

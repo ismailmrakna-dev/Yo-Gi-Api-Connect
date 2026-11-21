@@ -7,6 +7,7 @@ export async function request(method, route, body=null){
         options.headers= {"Content-Type": "application/json"}
         options.body=JSON.stringify(body)
     }
+    console.log(`${url}${route}`)
     const response= await fetch(`${url}${route}`,options)
     if(!response.ok){
         throw new Error(`response status: ${response.status}` )

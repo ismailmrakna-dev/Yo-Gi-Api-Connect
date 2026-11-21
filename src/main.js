@@ -26,13 +26,14 @@ async function initHomePages() {
    try {
     createMessage("... Waiting for Data ...")
     let cardsData=[]
+    console.log(await fetchData())
     cardsData = await fetchData()
     creerCards(cardsData)
    } catch {
     createMessage("ERR_CONNECTION_REFUSED");
    }
    creerOneCard()
-}
+}  
   
     // search filter sort events
     search.addEventListener("input", async (e) => {
@@ -50,15 +51,18 @@ async function initHomePages() {
         
         creerCards(await searchFilterSortApi(state))
     })
-    sort.addEventListener("click", async (e) => {
+    sort.addEventListener("change", async () => {
         createMessage("... Waiting for Data ...")
         state.sortBy = sort.value
       
         creerCards(await searchFilterSortApi(state))
     })
-    order.addEventListener("click", async (e) => {
+    order.addEventListener("change", async () => {
         createMessage("... Waiting for Data ...")
-        state.sortBy = order.value
+        console.log(order.value)
+        console.log(state.sortBy)
+        state.order = order.value
+        console.log(order.value)
         createMessage("... Waiting for Data ...")
         creerCards(await searchFilterSortApi(state))
     })
