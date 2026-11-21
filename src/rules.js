@@ -29,8 +29,11 @@ export async function searchFilterApi(name,type){
 }
 
 export async function searchFilterSortApi(obj){
-    
-     const response= await fetch(`${url}?type=${obj.type}&q=${obj.searchTar}&_sort=${obj.sortBy}&_order=${obj.order}`)
+     let newurl=`${url}?&q=${obj.searchTar}&_sort=${obj.sortBy}&_order=${obj.order}`
+     if(obj.type!=="ALL"){
+        newurl += `&type=${type}`
+     }
+     const response= await fetch(newurl)
      if(!response.ok){
       throw new Error(`Response Error: ${response.status}`)
      }

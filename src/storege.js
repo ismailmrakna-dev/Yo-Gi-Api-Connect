@@ -13,3 +13,6 @@ export function getFormDraft(){
    const dt= sessionStorage.getItem(draftAdd)
    return JSON.parse(dt)
 }
+export function removeFormDraft(){
+  sessionStorage.removeItem(draftAdd)
+}

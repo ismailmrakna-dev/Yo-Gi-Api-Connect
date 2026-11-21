@@ -7,7 +7,7 @@ import {  searchFilterSortApi  } from "./rules.js"
 
 const state={
     searchTar:"",
-    type:"DARK",
+    type:"ALL",
     sortBy:"name",
     order:"desc"
 }
